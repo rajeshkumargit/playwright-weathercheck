@@ -1,7 +1,7 @@
 import * as locators from '../locators/bom.locators';
 import { config } from '../support/config';
 import { ICustomWorld } from '../support/custom-world';
-import { getDateInFormat } from '../utils/dateUtils';
+import { getDateInFormat, getDateWithoutDayTxt } from '../utils/dateUtils';
 import { Given, When, Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
 import * as assert from 'assert';
@@ -9,7 +9,7 @@ import * as assert from 'assert';
 Given('Go to the bom homepage', async function (this: ICustomWorld) {
   const page = this.page!;
   await page.goto(config.BASE_URL);
-  await page.locator(locators.WEATHER_SECTION).isVisible();
+  await page.locator(locators.WEATHER_SECTION).waitFor();
 });
 
 When('User clicks on city {string}', async function (this: ICustomWorld, city: string) {
@@ -27,13 +27,12 @@ Then(
     const dayElement = page.locator(locators.DAY_ELEMENT, {
       hasText: dayFromNow,
     });
-    dayElement.scrollIntoViewIfNeeded();
     const rainElement = dayElement.locator('xpath=./parent::div').locator(locators.RAIN_TEXT);
     const rainText = await rainElement.innerText();
     const actualRainPercent = parseInt(rainText?.replace('%', '') ?? '0', 10);
     assert.ok(
       actualRainPercent < parseInt(rainToBeBelow),
-      `Looks like it will be a rainy day on ${dayFromNow}`,
+      `Looks like it will be a rainy day on ${getDateWithoutDayTxt(days)}`,
     );
   },
 );
