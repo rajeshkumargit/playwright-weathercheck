@@ -20,9 +20,10 @@ This repo is based on https://github.com/Tallyb/cucumber-playwright/
 Weather BOM raincheck feature
 
 ## Setup
-1. Upgrade node/npm to latest
-2. Run ```npm install```
-3. Followed by ```npx playwright install```
+1. Clone from https://github.com/rajeshkumargit/playwright-weathercheck.git
+2. Upgrade node/npm to latest
+3. In the cloned directory, Run ```npm install```
+4. Followed by ```npx playwright install```
 
 ## To run your tests
 
