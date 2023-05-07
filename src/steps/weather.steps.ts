@@ -4,6 +4,7 @@ import { ICustomWorld } from '../support/custom-world';
 import { getDateInFormat } from '../utils/dateUtils';
 import { Given, When, Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
+import * as assert from 'assert';
 
 Given('Go to the bom homepage', async function (this: ICustomWorld) {
   const page = this.page!;
@@ -30,8 +31,9 @@ Then(
     const rainElement = dayElement.locator('xpath=./parent::div').locator(locators.RAIN_TEXT);
     const rainText = await rainElement.innerText();
     const actualRainPercent = parseInt(rainText?.replace('%', '') ?? '0', 10);
-    expect(actualRainPercent, `Looks like it will be a rainy day on ${dayFromNow}`).toBeLessThan(
-      parseInt(rainToBeBelow),
+    assert.ok(
+      actualRainPercent < parseInt(rainToBeBelow),
+      `Looks like it will be a rainy day on ${dayFromNow}`,
     );
   },
 );

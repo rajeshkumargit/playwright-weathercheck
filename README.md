@@ -14,7 +14,6 @@ This repo is based on https://github.com/Tallyb/cucumber-playwright/
 - Launching of Playwright browser before running all tests
 - Running feature with video recording option
 - Report generated with last good image attached
-- Allure reports
 - Utilies functions
 ## Tests
 
@@ -67,14 +66,7 @@ The last reporter/formatter found on the cucumber-js command-line wins:
 
 In [cucumber.mjs](cucumber.mjs) file, modify the options.
 
-
-To use Allure reporting, you can run with env param: `USE_ALLURE=1`, and then use the `npm run allure` to show the report.
-
-
 ## To view the html report of the last run
 
 - run the command `npm run report`.
-
-## To view allure report
-- run the command `npm run allure`.
 
