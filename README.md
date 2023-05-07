@@ -47,7 +47,7 @@ npm run test
 
 specific browser with tag example,
 ```
-BROWSER="Google Chrome" USE_ALLURE=1 npm run debug -- -t @weather
+set BROWSER="Google Chrome" npm run test -- -t @weather
 ```
 
 ### Headless
@@ -55,11 +55,9 @@ BROWSER="Google Chrome" USE_ALLURE=1 npm run debug -- -t @weather
 **Warning**
 Headless mode doesn't work with BOM since web scraping is disabled on this site
 
-- `npm run debug` - headful mode with APIs enables both APIs and debug options
-- `npm run api` - headless mode with debug apis
-- `npm run video` - headless mode vith video
-
 ## To choose a reporter
+
+(Default cucumber report is generated in /reports directory)
 
 The last reporter/formatter found on the cucumber-js command-line wins:
 
